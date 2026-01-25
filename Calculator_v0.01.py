@@ -1,6 +1,7 @@
 '''This is Simple Calculator Python Code;It's take 2 Number and Calculate Sum/Subtract/Multiplication/Division'''
 
 def main():
+    print("This a simple calculator made in using python\n\n")
     a=float(input("Please Enter Your Frist Number:\t\t").strip())
     b=float(input("Please Enter Your Second Number:\t").strip())
     print(f"You have entered two numbers as {a},{b}\nPlease let me know which arithmatics operation you want to perform.\nYour options are\n\t1.Sum\n\t2.Subtraction\n\t3.Multiplication\n\t4.Division")
