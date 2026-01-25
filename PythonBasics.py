@@ -2,4 +2,6 @@
 '''Date is Sunday 25th Jan 2026'''
 print("Hello Subhojit!\nHow are you doing today?")
 place=input("Where are you now? ")
-print("Hello Subhojit! You are now in",place)
+feeling=input("How are you feeling today?\n")
+print("Hello Subhojit! You are now in",place,"\nI am feeling",feeling)
+print(f"Hello Subhojit you are in {place}")
