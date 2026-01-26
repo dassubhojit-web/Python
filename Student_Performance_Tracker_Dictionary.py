@@ -33,27 +33,55 @@ Find:
 Student with highest average
 Student with lowest average
 '''
+def main():
+    Student_Performance_Tracker={
+        "student_id":[1,2,3,4],
+        "student_name":["Subhojit","Adwait","Cindy","Sonali"],
+        "marks_math":[100,99,50,90],
+        "marks_science":[100,98,80,100],
+        "marks_english":[70,30,20,89]
+    }
+    print("Initial Student_Performance_Tracker\t")
+    display_students_stats(Student_Performance_Tracker)   
+# Calling Function to add new students and their marks -------------------------------------------    
+    Student_Performance_Tracker=insert_Student_Performance_Tracker(Student_Performance_Tracker)
+    display_students_stats(Student_Performance_Tracker)
 
-Student_Performance_Tracker={
-    "student_id":[1,2,3,4],
-    "student_name":["Subhojit","Adwait","Cindy","Sonali"],
-    "marks_math":[100,99,50,90],
-    "marks_science":[100,98,80,100],
-    "marks_english":[70,30,20,89]
-}
+def display_students_stats(SPT):
+         for i in SPT["student_id"]:
+            total_marks=SPT["marks_math"][i-1]+SPT["marks_science"][i-1]+SPT["marks_english"][i-1]
+            avg_marks=total_marks/3
+            if avg_marks >= 80:
+                gread="A"
+            elif avg_marks >= 60:
+                gread="B"
+            else:
+                gread="C"            
+            print(f"Total marks for student {SPT["student_name"][i-1]} is {total_marks} and average marks is {avg_marks:.2f} and Gread is {gread}")    
 
-#print(Student_Performance_Tracker)
-for i in Student_Performance_Tracker["student_id"]:
-    #print(i)
-    #print(Student_Performance_Tracker["student_id"][i-1])
-    #print(f"Student Roll Number:\t{Student_Performance_Tracker["student_id"][i-1]}\tName:\t{Student_Performance_Tracker["student_name"][i-1]}\tMath:\t{Student_Performance_Tracker["marks_math"][i-1]}\t")
-    total_marks=Student_Performance_Tracker["marks_math"][i-1]+Student_Performance_Tracker["marks_science"][i-1]+Student_Performance_Tracker["marks_english"][i-1]
-    avg_marks=total_marks/3
-    if avg_marks >= 80:
-        gread="A"
-    elif avg_marks >= 60:
-        gread="B"
-    else:
-        gread="C"            
-    #print(f"Total Marks for Student: {Student_Performance_Tracker["student_name"][i-1]} is {Student_Performance_Tracker["marks_math"][i-1]+Student_Performance_Tracker["marks_science"][i-1]+Student_Performance_Tracker["marks_english"][i-1]}")
-    print(f"Total marks for student {Student_Performance_Tracker["student_name"][i-1]} is {total_marks} and average marks is {avg_marks:.2f} and Gread is {gread}")
+def insert_Student_Performance_Tracker(new_std):
+    while True:
+        response=input("Do you want to insert a new student details?(Y/y|N/n)").strip().upper()
+        if response == "Y" or response == "N":
+            #continue
+            if response == "Y":
+                last_student_id=(new_std["student_id"][-1])
+                name=input("Please enter the name you want to add:\t").strip().title()
+                math_marks=int(input(f"Please enter the math marks for {name}:\t").strip())
+                science_marks=int(input(f"Please enter the science marks for {name}:\t").strip())
+                english_marks=int(input(f"Please enter the english marks for {name}:\t").strip())
+                new_std["student_id"].append(last_student_id+1)
+                new_std["student_name"].append(name)
+                new_std["marks_math"].append(math_marks)
+                new_std["marks_science"].append(science_marks)
+                new_std["marks_english"].append(english_marks)
+            else:
+                print("Thank you for using this programme, as you have chosen nothing to add bye for now!")
+                return new_std
+                break    
+        else:
+            print(f"Please provide valid input(Y/y|N/n)), your input was {response}")
+            break
+
+
+main()
