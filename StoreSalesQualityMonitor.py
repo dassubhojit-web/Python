@@ -14,6 +14,7 @@ Flag records where |z| > 2 as outliers
 Print a final table of outliers (date, store, sales, z-score)'''
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 print("This python programme is for store sales quality monitor")
 storedata=pd.read_csv("store_daily_sales.csv")
@@ -23,4 +24,15 @@ sales_amount_median=storedata.iloc[:, 2].median()
 sales_amount_mode=storedata.iloc[:, 2].mode().tolist()
 print(f"Here is the Sales Amount Mean\t {sales_amount_mean}\nHere is the Sales Amount Median\t {sales_amount_median}\nHere is the Sales Amount Mode\t {sales_amount_mode}")
 sales_amount_sd=storedata.iloc[:, 2].std()
-print(f"standard deviation\t {sales_amount_sd}")
+print(f"Here is the standard deviation\t {sales_amount_sd}")
+
+# Box-and-whisker plot for sales_amount (3rd column)
+ax = storedata.iloc[:, 2].plot(kind="box", title="Sales Amount Box-and-Whisker")
+ax.set_ylabel("Sales Amount")
+ax.set_ylim(10000, 16000)  # adjust min/max as you want
+plt.show()
+
+sales_amount = storedata.iloc[:, 2]
+sales_std = sales_amount.std(ddof=0)
+storedata["z_score"] = (sales_amount - sales_amount.mean()) / sales_std
+print(storedata[["z_score"]].head())
