@@ -1,4 +1,5 @@
 import sys
+import cowsay
 
 if len(sys.argv) == 1:
     sys.exit("Please provide your name!")
@@ -14,3 +15,9 @@ else:
         else:
             print(f"{name}'s age is {age}")
             break
+namelst=["No Name","Subhojit","Sonali","Adwait","Dipak"]
+print(namelst[1:])
+for lstname in namelst[1:]:
+    print(lstname)
+
+cowsay.say("Hello!")    
